@@ -36,9 +36,9 @@
 					<div class="tab-pane fade" id="availability">
 
 					</div>
-
+<div id="view_availability" style="width: 1000px; height: 350px;"></div>
 				</div>
-				<div id="view_availability" style="width: 1000px; height: 350px;"></div>
+
 		</div>
 		<!-- <?php echo '<iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=' . $_SESSION['email'] . '&amp;color=%232952A3&amp;ctz=Europe%2FParis" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>'; ?> -->
 	</div>

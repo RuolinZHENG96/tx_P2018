@@ -16,7 +16,7 @@ while ($result_tab = mysqli_fetch_array($result,MYSQLI_ASSOC)){
   $arr_trans_key = array();
 
   $arr_trans_key['Date'] = $result_tab['date'];
-  $arr_trans_key['Availability'] = (int)$result_tab['freemin'];
+  $arr_trans_key['Availability'] = (int)$result_tab['freemin']/60;
   $date_tab[$i]=$result_tab['date'];
 
   $i = $i+1;
@@ -39,14 +39,14 @@ $mystartdate=$current_date;
 $myenddate = $current_year . "-12-31";
 
 
-    for($start = strtotime($mystartdate); $start <= strtotime($myenddate);$start += 86400)  
+    for($start = strtotime($mystartdate); $start <= strtotime($myenddate);$start += 86400)
     {
 
 
         if(!in_array(date("Y-m-d",$start),$date_tab)){
           $arr_trans_key = array();
           $arr_trans_key['Date'] = date("Y-m-d",$start);
-          $arr_trans_key['Availability'] = 720;
+          $arr_trans_key['Availability'] = 720/60;
           $array_json = json_encode($arr_trans_key);
           echo $array_json;
           echo "\n";
@@ -59,7 +59,7 @@ $myenddate = $current_year . "-12-31";
     }
     $arr_trans_key = array();
     $arr_trans_key['Date'] = $myenddate;
-    $arr_trans_key['Availability'] = 720;
+    $arr_trans_key['Availability'] = 720/60;
     $array_json = json_encode($arr_trans_key);
     echo $array_json;
     echo "\n";

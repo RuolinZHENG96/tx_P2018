@@ -22,19 +22,76 @@
 	$_SESSION['familyName'] = $userData['familyName'];
 	$_SESSION['firstName'] = $userData['givenName'];
 
-	$service = new Google_Service_Calendar($gClient);
-	$calendarId = 'primary';
 
-  //echo '<iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=' . $userData['email'] . '&amp;color=%232952A3&amp;ctz=Europe%2FParis" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>';
 
-	$optParams = array(
-	  // 'maxResults' => 10,
-	  'orderBy' => 'startTime',
-	  'singleEvents' => true,
-	  // 'timeMin' => date('c'),
-	);
-	$results = $service->events->listEvents($calendarId);
-	var_dump($results);die;
+	$sql_id = "SELECT id FROM users WHERE gid=" . $_SESSION['gid'];
+	$result = mysqli_query($connection,$sql_id);
+	$result_tab = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	$id = $result_tab['id'];
+	//if this user isn't inscrit
+	if ($id===NULL){
+		require_once "controller/add_user_google.php";
+		$service = new Google_Service_Calendar($gClient);
+		$calendarId = 'primary';
+	  //echo '<iframe src="https://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=' . $userData['email'] . '&amp;color=%232952A3&amp;ctz=Europe%2FParis" style=" border-width:0 " width="800" height="600" frameborder="0" scrolling="no"></iframe>';
+
+		$results = $service->events->listEvents($calendarId);
+
+		 foreach ($results->getItems() as $event) {
+
+						//start date
+						if ($event->start->date !== NULL){
+							$startdate = $event->start->date;
+							$starttime = NULL;
+							$start = $startdate;
+						}
+						else {
+							$startdate = substr($event->start->dateTime,0,10);
+							$starttime = substr($event->start->dateTime,11);
+							$start = $event->start->dateTime;
+						}
+						//end date
+						if ($event->end->date !== NULL){
+							$enddate = $event->end->date;
+							$endtime = NULL;
+							$end = $enddate;
+						}
+						else {
+							$enddate = substr($event->end->dateTime,0,10);
+							$endtime = substr($event->end->dateTime,11);
+							$end = $event->end->dateTime;
+						}
+						if ($startdate===$enddate){
+							$is_same_day = 1;
+						}
+						else {
+							$is_same_day = 0;
+						}
+						// add event to database
+						$sql_add_event = "INSERT INTO `tx`.`events` (`event_id`, `owner_id`, `start`, `start_date`, `start_time`, `end`, `end_date`, `end_time`, `summary`, `location`, `description`,  `is_same_day`)
+				            VALUES ('{$event->id}', '{$_SESSION['id']}', '{$start}', '{$startdate}', '{$starttime}', '{$end}', '{$enddate}', '{endtime}','{$event->summary}','{$event->location}','{$event->description}','{$is_same_day}')";
+						if (mysqli_query($connection, $sql_add_event)) {
+
+						} else {
+								echo "Error: " . $sql_add_event . "<br>" . mysqli_error($connection);
+						}
+	 	    }
+	}
+	else {
+		$_SESSION['id'] = $id;
+	}
+//require_once "controller/cal_freetime.php";
+
+
+
+
+
+
+
+
+
+
+
 	// if (empty($results->getItems())) {
 	//     print "No upcoming events found.\n";
 	// } else {

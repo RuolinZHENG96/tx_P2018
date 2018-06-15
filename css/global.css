@@ -109,3 +109,7 @@ span.input-group-addon i {
 	font-size: 11px;
 	text-align: center;
 }
+
+#myTab li{
+  margin: 10px;
+}

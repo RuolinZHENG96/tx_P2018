@@ -1,4 +1,8 @@
 
+
+.row{
+  padding-bottom: 10px; 
+}
 .loginBtn-google{
   padding-left: 35px;
 }
@@ -113,3 +117,12 @@ span.input-group-addon i {
 #myTab li{
   margin: 10px;
 }
+
+
+
+div.google-visualization-tooltip {
+   font-size: 20px;
+   color: black;
+   font-family: sans-serif;
+   padding: 10px;
+ }

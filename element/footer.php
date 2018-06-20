@@ -4,7 +4,7 @@
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Plugin JavaScript -->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
 <script src='vendor/jquery/jquery-ui.custom.min.js'></script>
 
 

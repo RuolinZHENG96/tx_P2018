@@ -28,7 +28,8 @@
         </div>
       </div>
     </header>
-
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.js"></script>
 <?php require_once "element/footer.php"?>
 </body>
 </html>

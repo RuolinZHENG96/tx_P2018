@@ -12,11 +12,11 @@
 <!-- <script src="js/jqBootstrapValidation.js"></script>
 <script src="js/contact_me.js"></script> -->
 
-<!-- Custom scripts for this template -->
-<script src="js/agency.js"></script>
+
 
 <!-- lib calendar -->
 <script src='js/fullcalendar.js'></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script> -->
 
 
 

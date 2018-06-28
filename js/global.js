@@ -1,12 +1,6 @@
 
 //calendar
 	$(document).ready(function() {
-		//initializeAgenda();
-		//$('#agenda').hide();
-		//$('#agenda').css("display","none")
-
-		//initializeViewAvailability();
-	  //$('#availability').hide();
 
 		$('#foragenda').click(function(){
 			if($('#availability').length!==0){
@@ -18,27 +12,10 @@
 			} else {
 				$('#agenda').show();
 			}
-			// if(typeof($('#agenda table')) != "undefined" && $('#agenda table') !== null){
-			// 	initializeAgenda();
-			// }
-
 
 
 		});
 
-	// $('#foravailability').click(function(){
-	// 	initializeViewAvailability();
-	// 	if($('#agenda').length!==0){
-	// 		$('#agenda').hide();
-	// 	};
-	// 	if($('#availability div').length===0){
-	// 		initializeViewAvailability();
-	// 	}
-	// 	else {
-	// 		$('#availability').show();
-	// 	}
-	//
-	// });
 
 
 
@@ -115,20 +92,24 @@ function initializeAgenda(){
 					},
 		allDaySlot: false,
 		selectHelper: true,
-		dayClick: function(date, jsEvent, view) {
+		dayClick: function(date, allDay, jsEvent, view) {
 
-    // alert('Clicked on: ' + date.format());
-		//
-    // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-		//
-    // alert('Current view: ' + view.name);
 
-    // change the day's background color just for fun
-    //$(this).css('background-color', 'red');
-		
-		date=new Date(date).toISOString().slice(0, 10);
-		url="http://localhost/GoogleLogin/addEvent.php" + "?day=" + date;
 
+     // if (allDay) {
+     //   alert('Clicked on the entire day: ' + date);
+     // }else{
+     //   alert('Clicked on the slot: ' + date);
+     // }
+		 //
+     // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+		 //
+     // alert('Current view: ' + view.name);
+		 //
+     // // change the day's background color just for fun
+     // $(this).css('background-color', 'red');
+
+		url="/GoogleLogin/addEvent.php" + "?day=" + formatDate(date);
 		window.open(url);
   },
 		// select: function(start, end, allDay) {
@@ -170,7 +151,7 @@ function initializeAgenda(){
 		// 	}
 		//
 		// },
-		 events: 'http://localhost/GoogleLogin/controller/get_event_data_json.php'
+		 events: '/GoogleLogin/controller/get_event_data_json.php'
 		 //events: 'http://localhost/GoogleLogin/test.json'
 		 //  events: [
 		 //  {
@@ -234,4 +215,16 @@ function initializeAgenda(){
 		// ],
 
 	});
+}
+
+
+
+
+function formatDate(date){
+	var y = date.getFullYear();
+	var m = date.getMonth() + 1;
+	m = m < 10 ? '0' + m : m;
+	var d = date.getDate();
+	d = d < 10 ? ('0' + d) : d;
+	return y + '-' + m + '-' + d;
 }

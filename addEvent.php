@@ -92,17 +92,22 @@
 												</tr>
 												<tr>
 													<td>
-														<input type="text" name="nom1">
+														<input type="text" name="nom1" class="p-name">
 													</td>
 													<td>
-														<input type="text" name="email1">
+														<input type="text" name="email1" class="p-email">
 													</td>
 												</tr>
 											</table>
 											<input type="hidden" id="nb_participant" name="nb_participant" value="1">
 											<a class="col-md-12" id="addline">+</a>
 											<button type="button" id="show-calendars" class="btn btn-info">Consulter leurs calendriers du temps libre</button>
+
 										</div>
+										<div id="all_availabilities"></div>
+
+
+
 										<div class="row">
 											<div class="form-check">
 												<input type="checkbox" name="group" value="add" class="form-check-input" id="add-group">
@@ -132,11 +137,22 @@
 											<h3>Choisir les horaires</h3>
 										</div>
 										<div class="row">
-											<h5>Catégorie</h5>
-
+											<button type="button" class="btn btn-info btn-rounded" id="btn_coin">Gérer la coïncidence</button>
 										</div>
 										<div class="row">
-											<h5>Horaires choisis</h5>
+											<div id="container_coin">
+												<div id='coin_wrap'></div>
+												<div id='coincidence'></div>
+											</div>
+
+										</div>
+										<div class="row" >
+											<h5 style="width:100%">Horaires choisis</h5>
+											<input type="hidden" name="nb_horaire" id="nb_horaire" value="0">
+											<div style="width:100%" id="row_horaire">
+												<p style="width:50%;float:left;">Start time</p>
+												<p style="width:50%;float:right;">End time</p>
+											</div>
 										</div>
 										<div class="row">
 												<h5 >Vous ne savez pas encore ? <a href="#"> Lancer un sondage</a></h5>
@@ -182,10 +198,11 @@
   <script src="js/popper.min.js"></script>
 
     <?php require_once "element/footer.php"?>
-
+		<script type="text/javascript" src="js/loader.js"></script>
     <script type="text/javascript" src="js/addEvent.js"></script>
 		<script type="text/javascript" src="js/googleMap.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPD6S_9xVKgn1XvV0FS5zQqcX0W5H1AkI&libraries=places&callback=initAutocomplete"
 				 async defer></script>
+
   </body>
 </html>

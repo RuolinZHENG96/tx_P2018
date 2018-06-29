@@ -6,7 +6,9 @@ setcookie("category", $category);
 $description = $_POST["description"];
 setcookie("description", $description);
 $nb_participant = $_POST["nb_participant"];
-;
+
+
+
 $place = $_POST["place"];
 setcookie("place", $place);
 $real_nb=0;
@@ -27,6 +29,21 @@ if(isset($_POST["group"])&&$_POST["group"]=="add"){
   $group = false;
 }
 setcookie("group", $group);
+
+$real_nb_horaire=0;
+$nb_horaire = $_POST["nb_horaire"];
+for($i=1;$i<=$nb_horaire;$i++){
+  $index = $i-1;
+  if($_POST["nom".$i]!=null){
+    $start_time[$i-1]=$_POST["start".$i];
+    setcookie("start_time[$index]", $start_time[$i-1]);
+    $end_time[$i-1]=$_POST["end".$i];
+    setcookie("end_time[$index]", $end_time[$i-1]);
+    $real_nb_horaire++;
+  }
+}
+setcookie("nb_horaire", $real_nb_horaire);
+
  ?>
  <?php
  	require_once "element/first_header.php";
@@ -66,17 +83,26 @@ setcookie("group", $group);
                </div>
                <div class="row">
                  <h5>Horiare</h5>
-                 <p class="results"></p>
+                 <p class="results">
+                   <?php for($i=1;$i<=$real_nb_horaire;$i++){
+
+                        echo $start_time[$i-1];
+                        echo "----";
+                        echo $end_time[$i-1];
+                        echo "<br>";
+                    } ?>
+                 </p>
                </div>
                <div class="row">
                  <h5>Participant</h5>
                  <p class="results">
           <?php for($i=1;$i<=$real_nb;$i++){
-
+                     echo "Nom : ";
                      echo $participant_name[$i-1];
-                     echo "   ";
-                     echo $participant_email[$i-1];
+                     echo "&nbsp&nbsp&nbsp&nbsp&nbspEmail : ";
 
+                     echo $participant_email[$i-1];
+                     echo "<br>";
                  } ?></p>
                </div>
              </div>

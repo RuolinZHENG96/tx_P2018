@@ -13,12 +13,12 @@ while($result_check!=NULL){
   $result_check = mysqli_query($connection,$sql_check);
 }
 
-echo $event_id;die;
+echo $event_id;
 
-$sql_events = "SELECT * FROM events WHERE owner_id='{$_SESSION['id']}' ";
+$sql_events = "INSERT INTO `tx`.`events` (`event_id`, `owner_id`, `start`, `start_date`, `start_time`, `end`, `end_date`, `end_time`, `summary`, `location`, `description`, `is_same_day`)
+VALUES ('{$event_id}', '{$_SESSION['id']}', '{$_COOKIE['start_time[0]']}', '', '', '{$_COOKIE['end_time[0]']}', '', '', '{$_COOKIE['title']}', '{$_COOKIE['place']}', '{$_COOKIE['description']}', '1') ";
 $result = mysqli_query($connection,$sql_events);
-// INSERT INTO `tx`.`events` (`event_id`, `owner_id`, `start`, `start_date`, `start_time`, `end`, `end_date`, `end_time`, `summary`, `location`, `description`, `is_same_day`)
-// VALUES ('test', '2', '2018-06-29 10:15:00', '2018-06-29', '10:15:00', '2018-06-29 11:15:00', '2018-06-14', '11:15:00', 'ddd', 'ddd', 'ddd', '1');
+
 
 
 
@@ -30,4 +30,5 @@ function create_event_id($id_length) {
   }
   return $randid;
 }
+header('Location: http://localhost/GoogleLogin/index.php');
  ?>

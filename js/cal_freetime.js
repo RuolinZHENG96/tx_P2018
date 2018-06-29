@@ -75,11 +75,11 @@ function initializeViewAvailability(){
 
 
 //question
-function addunit() {
-  var start = $("#availability svg g:first-child text:first-child");
-
-  //var start = $("#availability svg text[text-anchor='start']");
-  var number_s =start.text();
-  start.text(number_s + " heures");
-  console.log(number_s);
-}
+// function addunit() {
+//   var start = $("#availability svg g:first-child text:first-child");
+//
+//   //var start = $("#availability svg text[text-anchor='start']");
+//   var number_s =start.text();
+//   start.text(number_s + " heures");
+//   console.log(number_s);
+//}

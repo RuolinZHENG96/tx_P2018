@@ -1,9 +1,15 @@
 <?php
 require_once "connect_db.php";
 session_start();
-
-
-$sql_days = "SELECT * FROM days WHERE owner_id='{$_SESSION['id']}' ";
+if(isset($_POST["Email"])){
+  $sql_id = "SELECT id FROM users WHERE email='{$_POST['Email']}' ";
+  $result = mysqli_query($connection,$sql_id);
+  $result_tab = mysqli_fetch_array($result,MYSQLI_ASSOC);  
+  $this_id = $result_tab['id'];
+}else {
+  $this_id = $_SESSION['id'];
+}
+$sql_days = "SELECT * FROM days WHERE owner_id='{$this_id}' ";
 $result = mysqli_query($connection,$sql_days);
 $nb_rows = $result->num_rows;
 header('Content-type:application/json');

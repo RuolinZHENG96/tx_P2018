@@ -18,7 +18,7 @@ while ($result_tab = mysqli_fetch_array($result,MYSQLI_ASSOC)){
   $arr_trans_key['start'] = $result_tab['start'];
   $arr_trans_key['end'] = $result_tab['end'];
   $arr_trans_key['allDay'] = false;
-  $arr_trans_key['color'] = 'blue';
+  $arr_trans_key['color'] = '#ffc107';
 
   $array_json = json_encode($arr_trans_key);
   echo $array_json;

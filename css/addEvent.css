@@ -67,6 +67,9 @@
       padding-top: 10px;
       padding-bottom: 10px;
     }
+    .gray-container .main-block .availability_con{
+      overflow: auto;
+    }
     .gray-container .main-block .sub-block{
       margin: auto;
       padding: 20px;

@@ -1,11 +1,11 @@
 Une application qui vous aide à organiser vos loisirs grâce à l'agenda de vos amis
 
-Base de données
+<br>Base de données
 
   phpMyadmin
-  Tables : days, events, users
+  Tables : days, events, users 
   
-Fonctionnalités réalisées
+<br>Fonctionnalités réalisées
 
   Login/inscription par compte Google ou avec email
   Importer Google Agenda
